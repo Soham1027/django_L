@@ -49,4 +49,6 @@ class HistoricalPerformance(models.Model):
     average_response_time=models.FloatField()
     fulfillment_rate=models.FloatField()
     
+    def __str__(self):
+        return self.vendor.name
    

@@ -11,20 +11,20 @@ STATUS=(
 
 # Create your models here.
 class Vendor(models.Model):
+    vendor_id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=20)
     contact_details=models.TextField()
     address=models.TextField()
     vendor_code=models.CharField(max_length=100)
-    on_time_delivery_rate=models.FloatField()
-    quality_rating_avg=models.FloatField()
-    average_response_time=models.FloatField()
-    fulfillment_rate=models.FloatField()
+   
   
     def  __str__(self):
          return self.name
      
 
 class PurchaseOrder(models.Model):
+    po_id=models.AutoField(primary_key=True)
+   
     po_number=models.CharField(max_length=50)
     vendor=models.ForeignKey(Vendor,on_delete=models.CASCADE,related_name="vendor_info")
     order_date=models.DateTimeField(auto_now_add=True)    
@@ -40,9 +40,13 @@ class PurchaseOrder(models.Model):
         return self.vendor.name
 
 class HistoricalPerformance(models.Model):
-    venfor=models.ForeignKey(Vendor, on_delete=models.CASCADE)    
+    performance_id=models.AutoField(primary_key=True)
+   
+    vendor=models.ForeignKey(Vendor, on_delete=models.CASCADE)    
     date=models.DateTimeField(auto_now=False, auto_now_add=False)
     on_time_delivery_rate=models.FloatField()
     quality_rating_avg=models.FloatField()
     average_response_time=models.FloatField()
     fulfillment_rate=models.FloatField()
+    
+   
